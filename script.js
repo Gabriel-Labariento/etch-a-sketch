@@ -1,12 +1,17 @@
 let container = document.querySelector(".container");
 
-function createGrid() {
-    for (let i = 0; i < 16; i++){
+function createGrid(gridSize) {
+    while (container.hasChildNodes()){
+        container.removeChild(container.firstChild);
+    }
+    for (let i = 0; i < gridSize; i++){
         let row = document.createElement("div");
         row.style.border = "1px solid black";
         row.style.display = "flex";
+        let minHeight = 100 / gridSize;
+        row.style.minHeight = minHeight + "vh";
         row.setAttribute("class", "row");
-        for (let j = 0; j < 16; j++){
+        for (let j = 0; j < gridSize; j++){
             let column = document.createElement("div");
             column.style.border = "1px solid red";
             column.style.flex = "1";
@@ -15,29 +20,28 @@ function createGrid() {
         }
         container.appendChild(row);
     }
+    changeColor();
 }
 
-createGrid();
+createGrid(16);
 
-let rows = document.querySelectorAll(".row");
-rows.forEach((row) => {
+function changeColor() {
+    let rows = document.querySelectorAll(".row");
+    rows.forEach((row) => {
     let squares = row.childNodes;
     squares.forEach((square) => {
         square.addEventListener("mouseenter", (e) => {
-            e.target.style.backgroundColor = "black";
-            console.log(e.target);
-            
+            var randomColor = Math.floor(Math.random()*16777215).toString(16);
+            e.target.style.backgroundColor = "#" + randomColor;
         })
     })
+})  
+}
+
+
+let sizeBtn = document.querySelector("button");
+
+sizeBtn.addEventListener("click", () => {
+    let gridSize = document.querySelector("input").value;
+    createGrid(gridSize);
 })
-
-
-
-
-
-
-// squares.forEach((square) => {
-//     square.addEventListener("mouseenter", (e) => {
-//         e.target.style.backgroundColor = "black";
-//     })
-// })
