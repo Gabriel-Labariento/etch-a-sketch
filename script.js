@@ -42,6 +42,6 @@ function changeColor() {
 let sizeBtn = document.querySelector("button");
 
 sizeBtn.addEventListener("click", () => {
-    let gridSize = document.querySelector("input").value;
+    let gridSize = parseInt(prompt("Input a grid size:"))
     createGrid(gridSize);
 })
