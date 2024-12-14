@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    min-height: 100vh;
+}
+
+.row{
+    min-height: 6.25vh;
+    justify-content: space-between;
+}
